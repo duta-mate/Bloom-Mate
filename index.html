@@ -22,6 +22,10 @@
       <span class="navbar__logo-icon">🌸</span>
       Bloom <span>Mate</span>
     </div>
+    <div class="navbar__search">
+      <span class="navbar__search-icon">🔎</span>
+      <input id="productSearch" type="search" placeholder="Cari buket, snack, wisuda, bunga..." oninput="handleSearch(this.value)" />
+    </div>
     <ul class="navbar__links" id="navLinks">
       <li><a href="#catalog">Katalog</a></li>
       <li><a href="#pricelist">Price List</a></li>
@@ -44,16 +48,14 @@
 
     <div class="hero__content">
       <div class="hero__eyebrow">
-        🌸 Buket Handmade Estetik untuk Mahasiswa
+        🌸 Bloom Mate Official Store
       </div>
       <h1 class="hero__title">
-        Hadir di setiap<br>
-        momen<span>mu</span>,<br>
-        dengan buket yang<br>
-        <span>personal & terjangkau</span>
+        Buket cantik untuk<br>
+        momen <span>spesialmu</span>
       </h1>
       <p class="hero__desc">
-        Dari wisuda, sidang, ulang tahun, hingga anniversary — Bloom Mate siap merangkai momen spesialmu menjadi kenangan yang tak terlupakan.
+        Pilih produk seperti di marketplace: foto jelas, harga transparan, dan bisa langsung pesan via WhatsApp.
       </p>
       <div class="hero__actions">
         <a href="#catalog" class="btn btn--primary">🛍️ Lihat Katalog</a>
@@ -61,7 +63,7 @@
       </div>
       <div class="hero__stats">
         <div class="hero__stat">
-          <span class="hero__stat-num" data-count="30+" data-suffix="+">0+</span>
+          <span class="hero__stat-num" data-count="30" data-suffix="+">0+</span>
           <span class="hero__stat-label">Pesanan Selesai</span>
         </div>
         <div class="hero__stat">
@@ -76,12 +78,22 @@
     </div>
 
     <div class="hero__visual">
-      <div class="hero__flower-card">
-        <span class="hero__flower-emoji">💐</span>
-        <p>Bloom Mate</p>
-        <strong>Buket Bunga & Hadiah Kreatif<br>untuk Mahasiswa</strong>
+      <div class="hero__market-card">
+        <div class="hero__market-head">
+          <span>Promo Pilihan</span>
+          <strong>Mulai 20K</strong>
+        </div>
+        <div class="hero__market-products">
+          <img src="Assets/catalog/catalog-mini-buket-20k.jpg" alt="Mini Buket Wisuda Pink">
+          <img src="Assets/catalog/catalog-buket-bunga-30k.jpg" alt="Buket Bunga Peach Pastel">
+          <img src="Assets/catalog/catalog-buket-snack-40k.jpg" alt="Buket Snack Kuning Hitam">
+        </div>
+        <div class="hero__market-foot">
+          <span>Gratis kartu ucapan</span>
+          <button onclick="openWA('Promo Pilihan Bloom Mate')">Pesan</button>
+        </div>
       </div>
-      <div class="hero__badge">🎓 Custom Order Tersedia!</div>
+      <div class="hero__badge">🎓 Custom tersedia</div>
     </div>
   </section>
 
@@ -100,7 +112,6 @@
       <span>Free Kartu Ucapan</span>
       <span>Harga Mahasiswa</span>
       <span>Price List Jelas</span>
-      <!-- Duplicate for seamless loop -->
       <span>Buket Wisuda</span>
       <span>Buket Snack</span>
       <span>Buket Uang</span>
@@ -120,8 +131,8 @@
   <section class="section" id="catalog">
     <div class="section__header">
       <div class="section__eyebrow">🌷 Katalog Bloom Mate</div>
-      <h2 class="section__title">Pilihan Buket Sesuai Foto</h2>
-      <p class="section__subtitle">Pilih produk satu per satu dengan harga sesuai katalog Bloom Mate</p>
+      <h2 class="section__title">Produk Pilihan</h2>
+      <p class="section__subtitle">Cari dan pilih buket satu per satu seperti belanja di marketplace</p>
     </div>
 
     <!-- Filter -->

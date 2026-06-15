@@ -251,6 +251,7 @@ const testimonials = [
 /* ── STATE ── */
 let activeFilter = "all";
 let activeModal = null;
+let activeSearch = "";
 let map = null;
 let marker = null;
 let selectedLocation = {
@@ -267,7 +268,29 @@ function formatPrice(product) {
 /* ── RENDER PRODUCTS ── */
 function renderProducts(filter = "all") {
   const grid = document.getElementById("productGrid");
-  const filtered = filter === "all" ? products : products.filter(p => p.category === filter);
+  const keyword = activeSearch.trim().toLowerCase();
+  const byCategory = filter === "all" ? products : products.filter(p => p.category === filter);
+  const filtered = keyword
+    ? byCategory.filter(p => {
+        const haystack = [
+          p.name,
+          p.categoryLabel,
+          p.desc,
+          ...(p.tags || [])
+        ].join(" ").toLowerCase();
+        return haystack.includes(keyword);
+      })
+    : byCategory;
+
+  if (!filtered.length) {
+    grid.innerHTML = `
+      <div class="product-empty">
+        <strong>Produk tidak ditemukan</strong>
+        <span>Coba kata kunci lain atau pilih kategori Semua.</span>
+      </div>
+    `;
+    return;
+  }
 
   grid.innerHTML = filtered.map(p => `
     <div class="product-card" onclick="openModal(${p.id})">
@@ -514,6 +537,11 @@ function setFilter(category, btn) {
   document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
   renderProducts(category);
+}
+
+function handleSearch(value) {
+  activeSearch = value || "";
+  renderProducts(activeFilter);
 }
 
 /* ── NAVBAR ── */
