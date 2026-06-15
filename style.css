@@ -350,6 +350,12 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
   text-align: left;
   margin: 0 auto 22px;
 }
+.section__header--center {
+  text-align: center;
+}
+.section__header--center .section__subtitle {
+  margin-inline: auto;
+}
 .section__eyebrow {
   display: inline-block;
   background: var(--pink-soft); color: var(--pink-primary);
@@ -599,8 +605,11 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
 
 /* ── HOW TO ORDER ── */
 .steps-grid {
+  max-width: 1180px;
+  margin-inline: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 226px));
+  justify-content: center;
   gap: 24px;
   position: relative;
 }
@@ -630,11 +639,25 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
   position: absolute; top: 50%; right: -18px; transform: translateY(-50%);
   font-size: 1.4rem; color: var(--pink-primary); z-index: 2;
 }
+.order-platforms {
+  max-width: 1180px;
+  margin: 48px auto 0;
+  text-align: center;
+}
+.order-platforms__buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 /* ── TESTIMONIALS ── */
 .testimonials-grid {
+  max-width: 1400px;
+  margin-inline: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 280px));
+  justify-content: center;
   gap: 24px;
 }
 .testi-card {
@@ -848,6 +871,7 @@ footer {
     grid-template-columns: 1fr;
   }
   .hero__visual { max-width: 520px; width: 100%; justify-self: start; }
+  .steps-grid { grid-template-columns: repeat(2, minmax(0, 226px)); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
@@ -874,6 +898,7 @@ footer {
   .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .product-card__img { height: 166px; }
   .product-card__desc { display: none; }
+  .steps-grid { grid-template-columns: minmax(0, 280px); }
   .footer-grid { grid-template-columns: 1fr; }
   .step-arrow { display: none; }
   .cta-banner { border-radius: var(--radius-sm); margin: 0 0 60px; }
