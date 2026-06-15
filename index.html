@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloom Mate — Buket Bunga & Hadiah Kreatif untuk Mahasiswa</title>
+  <meta name="description" content="Bloom Mate hadir di setiap momenmu dengan buket yang personal dan terjangkau. Wisuda, ulang tahun, sidang, anniversary — semua ada!">
+  <link rel="stylesheet" href="style.css" />
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <!-- Preconnect Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="navbar__logo">
+      <span class="navbar__logo-icon">🌸</span>
+      Bloom <span>Mate</span>
+    </div>
+    <ul class="navbar__links" id="navLinks">
+      <li><a href="#catalog">Katalog</a></li>
+      <li><a href="#pricelist">Price List</a></li>
+      <li><a href="#cara-pesan">Cara Pesan</a></li>
+      <li><a href="#peta-lokasi">Peta Lokasi</a></li>
+      <li><a href="#testimoni">Testimoni</a></li>
+      <li><a href="#" class="navbar__cta" onclick="openWA('Informasi Bloom Mate')">Pesan via WA 💬</a></li>
+    </ul>
+    <button class="navbar__hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero__blob hero__blob--1"></div>
+    <div class="hero__blob hero__blob--2"></div>
+
+    <div class="hero__content">
+      <div class="hero__eyebrow">
+        🌸 Buket Handmade Estetik untuk Mahasiswa
+      </div>
+      <h1 class="hero__title">
+        Hadir di setiap<br>
+        momen<span>mu</span>,<br>
+        dengan buket yang<br>
+        <span>personal & terjangkau</span>
+      </h1>
+      <p class="hero__desc">
+        Dari wisuda, sidang, ulang tahun, hingga anniversary — Bloom Mate siap merangkai momen spesialmu menjadi kenangan yang tak terlupakan.
+      </p>
+      <div class="hero__actions">
+        <a href="#catalog" class="btn btn--primary">🛍️ Lihat Katalog</a>
+        <a href="#pricelist" class="btn btn--outline">💰 Cek Harga</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <span class="hero__stat-num" data-count="500" data-suffix="+">0+</span>
+          <span class="hero__stat-label">Pesanan Selesai</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num" data-count="98" data-suffix="%">0%</span>
+          <span class="hero__stat-label">Pelanggan Puas</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num" data-count="16">0</span>
+          <span class="hero__stat-label">Jenis Produk</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__visual">
+      <div class="hero__flower-card">
+        <span class="hero__flower-emoji">💐</span>
+        <p>Bloom Mate</p>
+        <strong>Buket Bunga & Hadiah Kreatif<br>untuk Mahasiswa</strong>
+      </div>
+      <div class="hero__badge">🎓 Custom Order Tersedia!</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       MARQUEE
+  ══════════════════════════════════════ -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span>Buket Wisuda</span>
+      <span>Buket Snack</span>
+      <span>Buket Uang</span>
+      <span>Buket Boneka</span>
+      <span>Buket Coklat</span>
+      <span>Buket Bunga</span>
+      <span>Mini Wisuda</span>
+      <span>Free Kartu Ucapan</span>
+      <span>Harga Mahasiswa</span>
+      <span>Price List Jelas</span>
+      <!-- Duplicate for seamless loop -->
+      <span>Buket Wisuda</span>
+      <span>Buket Snack</span>
+      <span>Buket Uang</span>
+      <span>Buket Boneka</span>
+      <span>Buket Coklat</span>
+      <span>Buket Bunga</span>
+      <span>Mini Wisuda</span>
+      <span>Free Kartu Ucapan</span>
+      <span>Harga Mahasiswa</span>
+      <span>Price List Jelas</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       CATALOG
+  ══════════════════════════════════════ -->
+  <section class="section" id="catalog">
+    <div class="section__header">
+      <div class="section__eyebrow">🌷 Katalog Bloom Mate</div>
+      <h2 class="section__title">Pilihan Buket Sesuai Foto</h2>
+      <p class="section__subtitle">Pilih produk satu per satu dengan harga sesuai katalog Bloom Mate</p>
+    </div>
+
+    <!-- Filter -->
+    <div class="category-filter">
+      <button class="filter-btn active" onclick="setFilter('all', this)">🌈 Semua</button>
+      <button class="filter-btn" onclick="setFilter('boneka', this)">🧸 Boneka</button>
+      <button class="filter-btn" onclick="setFilter('coklat', this)">🍫 Coklat</button>
+      <button class="filter-btn" onclick="setFilter('bunga', this)">🌷 Bunga</button>
+      <button class="filter-btn" onclick="setFilter('snack', this)">🍬 Snack</button>
+      <button class="filter-btn" onclick="setFilter('uang', this)">💵 Uang</button>
+      <button class="filter-btn" onclick="setFilter('wisuda', this)">🎓 Wisuda</button>
+      <button class="filter-btn" onclick="setFilter('mini', this)">🎀 Mini</button>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" id="productGrid">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       PRICE LIST
+  ══════════════════════════════════════ -->
+  <section class="section price-section" id="pricelist">
+    <div class="section__header">
+      <div class="section__eyebrow">💰 Price List</div>
+      <h2 class="section__title">Harga Ramah Kantong Mahasiswa</h2>
+      <p class="section__subtitle">Transparan, terjangkau, dan sesuai budget kamu</p>
+    </div>
+    <div class="price-grid" id="priceGrid">
+      <!-- Rendered by JS -->
+    </div>
+
+    <div style="text-align:center; margin-top:40px;">
+      <p style="color:rgba(255,255,255,0.6); font-size:0.85rem; margin-bottom:16px;">
+        💡 Harga dapat berubah sesuai request & bahan. Konsultasi gratis via WhatsApp!
+      </p>
+      <button class="btn btn--primary" onclick="openWA('Konsultasi Harga')">
+        💬 Konsultasi Gratis via WA
+      </button>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       HOW TO ORDER
+  ══════════════════════════════════════ -->
+  <section class="section section--alt" id="cara-pesan">
+    <div class="section__header">
+      <div class="section__eyebrow">📋 Cara Pesan</div>
+      <h2 class="section__title">Pesan Semudah Chat!</h2>
+      <p class="section__subtitle">4 langkah simpel, buketmu langsung diproses</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-card__num">1</div>
+        <div class="step-card__icon">💬</div>
+        <h3 class="step-card__title">Chat via WA / IG</h3>
+        <p class="step-card__desc">Hubungi kami melalui WhatsApp atau Instagram DM. Ceritakan kebutuhanmu!</p>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step-card">
+        <div class="step-card__num">2</div>
+        <div class="step-card__icon">🎨</div>
+        <h3 class="step-card__title">Konsultasi & Custom</h3>
+        <p class="step-card__desc">Pilih produk, warna, tema, isi buket sesuai keinginan dan budgetmu.</p>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step-card">
+        <div class="step-card__num">3</div>
+        <div class="step-card__icon">💳</div>
+        <h3 class="step-card__title">Konfirmasi & Bayar</h3>
+        <p class="step-card__desc">Setuju harga, transfer DP/lunas. Tersedia transfer bank & QRIS.</p>
+        <div class="step-arrow">→</div>
+      </div>
+      <div class="step-card">
+        <div class="step-card__num">4</div>
+        <div class="step-card__icon">🌸</div>
+        <h3 class="step-card__title">Terima Buketmu!</h3>
+        <p class="step-card__desc">Buket disiapkan dengan penuh kasih sayang dan siap di-pickup atau dikirim!</p>
+      </div>
+    </div>
+
+    <!-- Contact Channels -->
+    <div style="margin-top:48px; text-align:center;">
+      <p style="color:var(--gray-500); margin-bottom:20px; font-size:0.9rem;">📱 Tersedia di platform:</p>
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <button onclick="openWA('Order Bloom Mate')" style="display:flex; align-items:center; gap:8px; padding:12px 24px; background:#25D366; color:white; border:none; border-radius:999px; cursor:pointer; font-weight:600; font-size:0.9rem; transition:all 0.28s;">
+          📱 WhatsApp
+        </button>
+        <a href="https://instagram.com" target="_blank" style="display:flex; align-items:center; gap:8px; padding:12px 24px; background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:white; border-radius:999px; font-weight:600; font-size:0.9rem;">
+          📸 Instagram
+        </a>
+        <a href="https://forms.google.com" target="_blank" style="display:flex; align-items:center; gap:8px; padding:12px 24px; background:#4285F4; color:white; border-radius:999px; font-weight:600; font-size:0.9rem;">
+          📝 Google Form
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       TESTIMONIALS
+  ══════════════════════════════════════ -->
+  <section class="section" id="testimoni">
+    <div class="section__header">
+      <div class="section__eyebrow">⭐ Testimoni</div>
+      <h2 class="section__title">Kata Mereka tentang Bloom Mate</h2>
+      <p class="section__subtitle">Ribuan momen spesial sudah kami bantu rangkai</p>
+    </div>
+    <div class="testimonials-grid" id="testiGrid">
+      <!-- Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       MAPS (PETA LOKASI)
+  ══════════════════════════════════════ -->
+  <section class="section section--alt" id="peta-lokasi">
+    <div class="section__header">
+      <div class="section__eyebrow">🗺️ Peta Lokasi Pemesanan</div>
+      <h2 class="section__title">Tentukan Lokasi Pengiriman</h2>
+      <p class="section__subtitle">Gunakan GPS atau geser pin pada peta untuk menetapkan alamat pengiriman Anda</p>
+    </div>
+    
+    <div class="map-container">
+      <div id="map"></div>
+      <div class="map-card">
+        <h3 class="map-card__title">Detail Lokasi Pengiriman</h3>
+        <div class="map-card__item">
+          <span class="map-card__label">Koordinat</span>
+          <span class="map-card__value" id="mapCoords">Belum ditentukan</span>
+        </div>
+        <div class="map-card__item">
+          <span class="map-card__label">Alamat / Area</span>
+          <span class="map-card__value" id="mapAddress">Mencari lokasi...</span>
+        </div>
+        <div class="map-card__actions">
+          <button class="btn btn--primary" id="btnGetLocation" onclick="locateUser()">
+            📍 Gunakan Lokasi Saya
+          </button>
+          <button class="btn btn--outline" id="btnConfirmLocation" onclick="confirmLocation()">
+            ✅ Konfirmasi Lokasi Ini
+          </button>
+        </div>
+        <p class="map-card__note">
+          *Lokasi ini akan dilampirkan otomatis saat Anda mengklik tombol WhatsApp pesanan di katalog.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CTA BANNER
+  ══════════════════════════════════════ -->
+  <div class="cta-banner">
+    <h2>Ada momen spesial yang ingin kamu rayakan?</h2>
+    <p>Dari wisuda hingga anniversary — kami siap merangkai buket yang bermakna untukmu. Konsultasi gratis, harga bersahabat!</p>
+    <div class="cta-banner__actions">
+      <button class="btn btn--white" onclick="openWA('Konsultasi Custom Order')">
+        💬 Konsultasi Sekarang
+      </button>
+      <a href="#catalog" class="btn btn--ghost-white">
+        🌸 Lihat Katalog Lengkap
+      </a>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand__logo">🌸 Bloom <span>Mate</span></div>
+        <p class="footer-brand__desc">
+          Buket bunga & hadiah kreatif handmade untuk mahasiswa. Hadir di setiap momenmu dengan buket yang personal dan terjangkau.
+        </p>
+        <div class="footer-social">
+          <a href="https://wa.me/6281229751246" target="_blank" title="WhatsApp">📱</a>
+          <a href="https://instagram.com" target="_blank" title="Instagram">📸</a>
+          <a href="https://tiktok.com" target="_blank" title="TikTok">🎵</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Produk</h4>
+        <ul>
+          <li><a href="#catalog">Buket Boneka</a></li>
+          <li><a href="#catalog">Buket Coklat</a></li>
+          <li><a href="#catalog">Buket Bunga</a></li>
+          <li><a href="#catalog">Buket Snack</a></li>
+          <li><a href="#catalog">Buket Uang</a></li>
+          <li><a href="#catalog">Buket Wisuda</a></li>
+          <li><a href="#catalog">Mini Buket</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="#pricelist">Price List</a></li>
+          <li><a href="#cara-pesan">Cara Pesan</a></li>
+          <li><a href="#testimoni">Testimoni</a></li>
+          <li><a href="#" onclick="openWA('Info Pengiriman')">Info Pengiriman</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontak</h4>
+        <ul>
+          <li><a href="https://wa.me/6281229751246" target="_blank">WA: 0812-2975-1246</a></li>
+          <li><a href="https://instagram.com" target="_blank">@bloommate.id</a></li>
+          <li><a href="#">bloommate@email.com</a></li>
+          <li><a href="#" style="color:rgba(255,255,255,0.4); font-size:0.78rem; cursor:default;">Surabaya, Jawa Timur</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 <span>Bloom Mate</span> · Kewirausahaan Berbasis Teknologi, Kelas 17 · ITS Surabaya</span>
+      <span style="font-size:0.78rem; color:rgba(255,255,255,0.4);">Made with 🌸 by Kelompok 9</span>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════
+       FLOATING WA BUTTON
+  ══════════════════════════════════════ -->
+  <button class="wa-float" onclick="openWA('Order Bloom Mate')" title="Pesan via WhatsApp">
+    <span class="wa-float__icon">📱</span>
+    Pesan via WA
+  </button>
+
+  <!-- ══════════════════════════════════════
+       MODAL (Order Detail)
+  ══════════════════════════════════════ -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal__header" style="position:relative;">
+        <h2 class="modal__title">Detail Produk</h2>
+        <p class="modal__subtitle">Kategori · Rating · Terjual</p>
+        <button class="modal__close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal__body">
+        <div class="modal__product-row">
+          <!-- Filled by JS -->
+        </div>
+        <div class="modal__price">Rp —</div>
+        <div id="modalCustomOptions" class="modal__custom-options">
+          <!-- Filled by JS -->
+        </div>
+        <div class="modal__options">
+          <label>Nama Pemesan</label>
+          <input type="text" placeholder="Contoh: Alya Rahmawati" />
+        </div>
+        <div class="modal__options">
+          <label>Catatan / Request Khusus</label>
+          <textarea class="modal__note" placeholder="Contoh: tuliskan 'Happy Graduation Kakak!' di kartu ucapan, warna pink dominan..."></textarea>
+        </div>
+        <div class="modal__actions" style="margin-top:8px;">
+          <button class="btn btn--outline" onclick="closeModal()" style="color:var(--gray-700); border-color:var(--gray-200);">Batal</button>
+          <button class="btn btn--primary modal__wa-btn">💬 Pesan via WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TOAST NOTIFICATION
+  ══════════════════════════════════════ -->
+  <div class="toast" id="toast">
+    <span class="toast__icon">✅</span>
+    <span class="toast__text">Berhasil!</span>
+  </div>
+
+  <!-- Leaflet Map JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="main.js"></script>
+</body>
+</html>
